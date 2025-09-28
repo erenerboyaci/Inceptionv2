@@ -14,6 +14,7 @@ for i in $(seq 1 30); do
 done
 
 if [ ! -f /var/www/html/wp-config.php ]; then
+    rm -rf /var/www/html/*
     wp core download --allow-root --path=/var/www/html
     wp config create \
         --dbname="${DB_NAME}" \
@@ -34,8 +35,13 @@ else
         --admin_password="${WP_PASSWORD_ADMIN}" \
         --admin_email="${WP_EMAIL_ADMIN}" \
         --skip-email \
-        --allow-root \
-        --path=/var/www/html
+        --allow-root
+
+    wp user create --allow-root $DB_USER \
+    $MYSQL_EMAIL \
+    --user_pass=$DB_PASSWORD
+
+    
 fi
 
 chown -R www-data:www-data /var/www/html

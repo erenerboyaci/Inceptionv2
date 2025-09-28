@@ -14,4 +14,4 @@ if [ ! -f /etc/nginx/ssl/nginx.crt ]; then
 fi
 
 nginx -t
-exec nginx -g "daemon off;"
+exec "$@"

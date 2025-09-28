@@ -44,6 +44,34 @@ services:
       - wordpress
     restart: always
 
+  cadvisor:
+    container_name: cadvisor
+    build: ./requirements/bonus/cadvisor
+    ports:
+      - "8080:8080"
+    networks:
+      - wordpress_net
+    depends_on:
+      - nginx
+    restart: always
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:wr
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    networks:
+      - wordpress_net
+    depends_on:
+      - wordpress
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
+
+
 secrets:
   db_password:
     file: ../secrets/db_password.txt

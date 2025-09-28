@@ -1,4 +1,5 @@
 [mysqld]
+
 user                    = mysql
 socket                  = /run/mysqld/mysqld.sock
 port                    = 3306
