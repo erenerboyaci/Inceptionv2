@@ -42,4 +42,4 @@ chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
 
 echo "Executing wordpress now..."
-exec php-fpm7.4 -F
+exec "$@"

@@ -24,8 +24,6 @@ fclean:
 	$(COMPOSE) $(FILE) down -v --rmi all --remove-orphans
 	docker system prune -af
 	sudo test -n /home/merboyac/data && sudo rm -rf -- /home/merboyac/data
-	rm -f -- "secrets/db_password.txt" "secrets/db_root_password.txt"
-	rm -rf -- "secrets/certs"
 
 logs:
 	$(COMPOSE) $(FILE) logs -f
